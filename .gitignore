@@ -15,3 +15,10 @@ buildNumber.properties
 .project
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
+# Frontend dependencies
+nextbi-client/node_modules/
+nextbi-client/dist/
+# IDE files
+.idea/
+.vscode/
+*.iml
