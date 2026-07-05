@@ -2,7 +2,10 @@ package com.nextbi.nextbi.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
 import lombok.Data;
@@ -15,8 +18,10 @@ import lombok.Data;
  */
 @SuppressWarnings("serial")
 @Data
+@TableName(value = "bi_chart_widget", autoResultMap = true)
 public class BiChartWidget extends Model<BiChartWidget> {
 
+    @TableId(type = IdType.AUTO)
     private Long id;
     //所属仪表盘
     private Long dashboardId;
