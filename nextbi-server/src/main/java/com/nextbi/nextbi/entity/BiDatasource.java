@@ -1,8 +1,15 @@
 package com.nextbi.nextbi.entity;
 
 import java.util.Date;
+import java.util.Map;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -13,18 +20,16 @@ import lombok.Data;
  */
 @SuppressWarnings("serial")
 @Data
+@TableName(value = "bi_datasource",autoResultMap = true)
 public class BiDatasource extends Model<BiDatasource> {
-
+    @TableId(type = IdType.AUTO)
     private Long id;
-    //所属用户ID
     private Long userId;
-    //数据源名称
     private String name;
-    //类型: MYSQL, POSTGRESQL, FILE(CSV/XML)
     private String type;
-    //连接配置: {host, port, database, username, password}
-    private String connConfig;
-
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private Map<String,Object> connConfig;
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private Date createTime;
 
 

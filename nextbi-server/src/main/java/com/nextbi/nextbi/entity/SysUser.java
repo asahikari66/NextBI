@@ -2,7 +2,11 @@ package com.nextbi.nextbi.entity;
 
 import java.util.Date;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -13,8 +17,10 @@ import lombok.Data;
  */
 @SuppressWarnings("serial")
 @Data
+@TableName(value = "sys_user", autoResultMap = true)
 public class SysUser extends Model<SysUser> {
     //主键
+    @TableId(type = IdType.AUTO)
     private Long id;
     //用户名
     private String username;
@@ -23,8 +29,9 @@ public class SysUser extends Model<SysUser> {
     //邮箱
     private String email;
     //注册时间
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private Date createTime;
-
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private Date updateTime;
 
 

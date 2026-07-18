@@ -1,10 +1,16 @@
 package com.nextbi.nextbi.entity;
 
 import java.util.Date;
+import java.util.Map;
+import java.util.Objects;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 /**
@@ -15,15 +21,16 @@ import lombok.Data;
  */
 @SuppressWarnings("serial")
 @Data
+@TableName(value = "bi_file_content",autoResultMap = true)
 public class BiFileContent extends Model<BiFileContent> {
-
+    @TableId(type = IdType.AUTO)
     private Long id;
-    //关联的数据集ID
     private Long datasetId;
-    //存储单行解析后的JSON数据: {"city":"Sapporo", "temp": 22}
-    @TableField(typeHandler = JacksonTypeHandler.class)
-    private String dataJson;
 
+    @TableField(typeHandler = JacksonTypeHandler.class)
+    private Map<String, Objects> dataJson;
+
+    @JsonFormat(pattern = "yyyy/MM/dd HH:mm:ss")
     private Date createTime;
 
 
